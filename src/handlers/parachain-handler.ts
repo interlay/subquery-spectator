@@ -95,7 +95,7 @@ export const updateCrowdloanStatus = async (block: SubstrateBlock) => {
       await fund.save();
     }
 
-    if (fund.status === CrowdloanStatus.WON && blockNum >= fund.lockExpiredBlock) {
+    if (fund.status === CrowdloanStatus.WON && blockNum >= fund.leaseExpiredBlock) {
       fund.status = CrowdloanStatus.RETIRING;
       logger.info(`Fund ${fund.id} status change from Won to Retiring`);
       await fund.save();
